@@ -1,0 +1,148 @@
+:root {
+    color-scheme: light dark;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: grid;
+    place-content: center;
+    height: 100vh;
+    padding: 36px;
+    grid-template-rows: 1fr;
+}
+
+#login-container {
+    display: grid;
+    place-content: center;
+    height: 100vh;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#username-input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#chat-container {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 800px; /* Ajusta el ancho según sea necesario */
+    height: 100%;
+    display: flex;
+}
+
+#chat-content {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+#users-container {
+    flex: 1;
+    border-left: 1px solid #ddd;
+    padding: 10px;
+    background-color: #303; /* Color de fondo claro para la lista de usuarios */
+}
+
+#users-container h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+#users-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#users-list li {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+#users-list li:last-child {
+    border-bottom: none;
+}
+
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    height: calc(100% - 50px); /* Ajusta según el tamaño del formulario */
+    scroll-behavior: smooth;
+    padding-bottom: 4px;
+}
+
+#messages li {
+    padding: .5rem 1rem;
+}
+
+#messages li:nth-child(odd) {
+    background: #300;
+}
+
+#form {
+    display: flex;
+    height: 50px;
+    padding: 4px;
+    position: relative;
+}
+
+#input {
+    border-radius: 9999px;
+    border: 1px solid #ccc;
+    flex: 1;
+    margin: 4px;
+    padding: 0 8px;
+}
+
+#form button {
+    background: #09f;
+    color: #fff;
+    border: 0;
+    margin: 4px;
+    border-radius: 4px;
+    transition: background 500ms;
+}
+
+#form button:hover {
+    background: #0cf;
+}
+
+.message-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.message-item img.profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.message-item .message-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-item .message-text .display-name {
+    font-weight: bold;
+}
+
+.message-item .message-text .message-content {
+    margin-top: 0.25rem;
+}

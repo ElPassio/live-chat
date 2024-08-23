@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Contenedor de Login -->
+    <section id="login-container" style="display: block;">
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <button type="button" id="registerButton">Register</button>
+        </form>
+    </section>
+
+    <!-- Contenedor de Registro -->
+    <section id="register-container" style="display: none;">
+        <form id="registerForm">
+            <input type="text" id="registerUsername" placeholder="Username" required>
+            <input type="password" id="registerPassword" placeholder="Password" required>
+            <input type="text" id="displayName" placeholder="Display Name" required>
+            <input type="file" id="profilePicture" name="profilePicture" accept="image/*">
+            <button type="submit">Register</button>
+            <button type="button" id="backToLogin">Back to Login</button>
+        </form>
+    </section>
+
+    <!-- Contenedor de Chat -->
+    <section id="chat-container" style="display: none; display: flex;">
+        <div id="chat-content" style="flex: 3;">
+            <ul id="messages"></ul>
+            <form id="form">
+                <input type="text" id="input" placeholder="Escribe un mensaje...">
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+        <div id="users-container"">
+            <h3>Usuarios Conectados</h3>
+            <ul id="users-list"></ul>
+        </div>
+    </section>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/script.js"></script>
+</body>
+</html>
