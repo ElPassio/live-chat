@@ -53,16 +53,32 @@ function showChat() {
     });
     socket.on('chat message', (msg, id, displayName, profilePicture) => {
         const item = document.createElement('li');
-        const img = document.createElement('img');
-        img.src = profilePicture ? `/uploads/${profilePicture}` : '/default-profile.png'; // default profile image if not set
-        img.alt = displayName;
-        img.style.width = '30px'; // Adjust size as needed
-        img.style.height = '30px';
-        img.style.borderRadius = '50%';
+        item.classList.add('message-item'); // Añade la clase para el estilo
     
+        const img = document.createElement('img');
+        img.src = profilePicture ? `/uploads/${profilePicture}` : '/default-profile.png';
+        img.alt = displayName;
+        img.classList.add('profile-picture'); // Añade la clase para el estilo
+    
+        const messageText = document.createElement('div');
+        messageText.classList.add('message-text');
+    
+        const displayNameElement = document.createElement('span');
+        displayNameElement.classList.add('display-name');
+        displayNameElement.textContent = displayName;
+    
+        const messageContent = document.createElement('span');
+        messageContent.classList.add('message-content');
+        messageContent.textContent = msg;
+    
+        // Append display name and message content to messageText div
+        messageText.appendChild(displayNameElement);
+        messageText.appendChild(messageContent);
+    
+        // Append image and messageText div to the li element
         item.appendChild(img);
-        const text = document.createTextNode(` ${displayName}: ${msg}`);
-        item.appendChild(text);
+        item.appendChild(messageText);
+    
         messages.appendChild(item);
         item.scrollIntoView();
     });
