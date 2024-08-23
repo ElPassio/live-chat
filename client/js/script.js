@@ -1,7 +1,7 @@
 import { io } from 'https://cdn.socket.io/4.3.2/socket.io.esm.min.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    showLogin(); // Mostrar la pantalla de login al cargar
+    showChat(); // Mostrar la pantalla de login al cargar
 });
 
 // Función para mostrar el formulario de login
@@ -40,7 +40,7 @@ function showChat() {
         users.forEach(user => {
             const item = document.createElement('li');
             const img = document.createElement('img');
-            img.src = user.profilePicture ? `/uploads/${user.profilePicture}` : '/default-profile.png';
+            img.src = user.profilePicture ? `/uploads/${user.profilePicture}` : '/uploads/default.jpeg';
             img.alt = user.displayName;
             img.style.width = '30px';
             img.style.height = '30px';
@@ -56,7 +56,7 @@ function showChat() {
         item.classList.add('message-item'); // Añade la clase para el estilo
     
         const img = document.createElement('img');
-        img.src = profilePicture ? `/uploads/${profilePicture}` : '/default-profile.png';
+        img.src = profilePicture ? `/uploads/${profilePicture}` : '/uploads/default.jpg';
         img.alt = displayName;
         img.classList.add('profile-picture'); // Añade la clase para el estilo
     
