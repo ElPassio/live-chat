@@ -40,28 +40,56 @@ function showChat() {
     const userColors = new Map(); // Mapa para almacenar colores de usuario
 
     socket.on('update user list', (users) => {
-        userList.innerHTML = ''; // Limpiar la lista anterior
-        users.forEach(user => {
-            const color = userColors.get(user.displayName) || getRandomColor();
-            userColors.set(user.displayName, color); // Asignar o recuperar el color
-            
-            const item = document.createElement('li');
-            const img = document.createElement('img');
-            img.src = user.profilePicture ? `/uploads/${user.profilePicture}` : '/uploads/default.jpeg';
-            img.alt = user.displayName;
-            img.style.width = '30px';
-            img.style.height = '30px';
-            img.style.borderRadius = '50%';
-            item.appendChild(img);
+    const currentUsers = Array.from(userList.children);
+    const currentUsernames = currentUsers.map(li => li.textContent.trim());
+    const newUsernames = users.map(user => user.displayName);
 
-            const text = document.createElement('span');
-            text.style.color = color; // Aplicar color aleatorio
-            text.textContent = ` ${user.displayName}`;
-            item.appendChild(text);
-            userList.appendChild(item);
-        });
+    // Identificar los usuarios que se desconectaron
+    const disconnectedUsers = currentUsernames.filter(username => !newUsernames.includes(username));
+
+    // Animar la salida de los usuarios desconectados
+    disconnectedUsers.forEach(username => {
+        const userItem = currentUsers.find(li => li.textContent.trim() === username);
+        if (userItem) {
+            userItem.classList.add('disconnected');
+            void userItem.offsetWidth; // Forzar reflow
+            userItem.classList.add('hide');
+            setTimeout(() => {
+                userItem.remove();
+            }, 500); // Esperar el tiempo de la animación antes de eliminar el elemento
+        }
     });
 
+    // Limpiar la lista y agregar los usuarios conectados actuales
+    userList.innerHTML = '';
+    users.forEach(user => {
+        const color = userColors.get(user.displayName) || getRandomColor();
+        userColors.set(user.displayName, color);
+
+        const item = document.createElement('li');
+        const img = document.createElement('img');
+        img.src = user.profilePicture ? `/uploads/${user.profilePicture}` : '/uploads/default.jpeg';
+        img.alt = user.displayName;
+        img.style.width = '30px';
+        img.style.height = '30px';
+        img.style.borderRadius = '50%';
+        item.appendChild(img);
+
+        const text = document.createElement('span');
+        text.style.color = color;
+        text.textContent = ` ${user.displayName}`;
+        item.appendChild(text);
+
+        // Si es un nuevo usuario, aplicamos la animación de conexión
+        if (!currentUsernames.includes(user.displayName)) {
+            item.classList.add('connected');
+            void item.offsetWidth; // Forzar reflow
+            item.classList.add('show');
+        }
+
+        userList.appendChild(item);
+    });
+});
     socket.on('chat message', (msg, id, displayName, profilePicture) => {
         const color = userColors.get(displayName) || getRandomColor();
         userColors.set(displayName, color); // Asignar o recuperar el color

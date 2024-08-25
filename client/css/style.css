@@ -73,6 +73,7 @@ body {
     border-bottom: 1px solid #ddd;
     display: flex;
     align-items: center; /* Alinea verticalmente la imagen y el texto */
+    
 }
 
 #users-list img {
@@ -165,4 +166,8 @@ body {
     margin-top: 0.25rem;
     animation: slideInLeft, fadeIn; /* referring directly to the animation's @keyframe declaration */
     animation-duration: 0.5s, 1s; /* don't forget to set a duration! */
+}
+.connected {
+    animation: flipInX; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1s; /* don't forget to set a duration! */
 }
