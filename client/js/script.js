@@ -3,7 +3,9 @@ import { io } from 'https://cdn.socket.io/4.3.2/socket.io.esm.min.js';
 document.addEventListener('DOMContentLoaded', () => {
     showChat(); // Mostrar la pantalla de login al cargar
 });
-
+function getRandomColor() {
+    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
 // Función para mostrar el formulario de login
 function showLogin() {
     document.getElementById('login-container').style.display = 'block';
@@ -20,11 +22,10 @@ function showRegister() {
 
 // Función para mostrar el chat
 function showChat() {
-    
     const userList = document.getElementById('users-list');
     const form = document.getElementById('form');
     const input = document.getElementById('input');
-    const messages = document.getElementById('messages')
+    const messages = document.getElementById('messages');
     document.getElementById('login-container').style.display = 'none';
     document.getElementById('register-container').style.display = 'none';
     document.getElementById('chat-container').style.display = 'flex';
@@ -35,9 +36,15 @@ function showChat() {
             serverOffset: 0
         }
     });
+
+    const userColors = new Map(); // Mapa para almacenar colores de usuario
+
     socket.on('update user list', (users) => {
-        userList.innerHTML = ''; // Clear previous list
+        userList.innerHTML = ''; // Limpiar la lista anterior
         users.forEach(user => {
+            const color = userColors.get(user.displayName) || getRandomColor();
+            userColors.set(user.displayName, color); // Asignar o recuperar el color
+            
             const item = document.createElement('li');
             const img = document.createElement('img');
             img.src = user.profilePicture ? `/uploads/${user.profilePicture}` : '/uploads/default.jpeg';
@@ -46,42 +53,54 @@ function showChat() {
             img.style.height = '30px';
             img.style.borderRadius = '50%';
             item.appendChild(img);
-            const text = document.createTextNode(` ${user.displayName}`);
+
+            const text = document.createElement('span');
+            text.style.color = color; // Aplicar color aleatorio
+            text.textContent = ` ${user.displayName}`;
             item.appendChild(text);
             userList.appendChild(item);
         });
     });
+
     socket.on('chat message', (msg, id, displayName, profilePicture) => {
+        const color = userColors.get(displayName) || getRandomColor();
+        userColors.set(displayName, color); // Asignar o recuperar el color
+        
         const item = document.createElement('li');
-        item.classList.add('message-item'); // Añade la clase para el estilo
-    
+        item.classList.add('message-item'); // Solo 'message-item' inicialmente
+        
         const img = document.createElement('img');
         img.src = profilePicture ? `/uploads/${profilePicture}` : '/uploads/default.jpg';
         img.alt = displayName;
-        img.classList.add('profile-picture'); // Añade la clase para el estilo
-    
+        img.classList.add('profile-picture');
+        
         const messageText = document.createElement('div');
         messageText.classList.add('message-text');
-    
+        
         const displayNameElement = document.createElement('span');
         displayNameElement.classList.add('display-name');
         displayNameElement.textContent = displayName;
-    
+        displayNameElement.style.color = color;
+        
         const messageContent = document.createElement('span');
         messageContent.classList.add('message-content');
         messageContent.textContent = msg;
-    
-        // Append display name and message content to messageText div
+        
         messageText.appendChild(displayNameElement);
         messageText.appendChild(messageContent);
-    
-        // Append image and messageText div to the li element
         item.appendChild(img);
         item.appendChild(messageText);
-    
+        
+        // Añadir el mensaje al DOM antes de aplicar las animaciones
         messages.appendChild(item);
+        
+        // Ahora, añadir las clases de animación
+        item.classList.add('animate__animated');
+    
+        // Asegurar que el mensaje sea visible
         item.scrollIntoView();
     });
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         if (input.value) {

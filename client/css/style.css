@@ -134,6 +134,8 @@ body {
     align-items: center; /* Alinea verticalmente la imagen y el texto */
     padding: 0.5rem;
     margin-bottom: 0.5rem;
+    border-radius: 10%;
+    
 }
 
 .message-item img.profile-picture {
@@ -144,8 +146,10 @@ body {
 }
 
 .message-item .message-text {
+    
     display: flex;
     flex-direction: column;
+    
 }
 
 .message-item .message-text .display-name {
@@ -155,5 +159,10 @@ body {
 
 .message-item .message-text .message-content {
     color: #F3F4FC;
+    background-color: #273274 ;
+    border-radius: 10px;
+    padding:10px;
     margin-top: 0.25rem;
+    animation: slideInLeft, fadeIn; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 0.5s, 1s; /* don't forget to set a duration! */
 }

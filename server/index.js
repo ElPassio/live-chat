@@ -65,7 +65,6 @@ io.on('connection', async (socket) => {
     const username = socket.handshake.auth.username;
     let displayName = 'anonymous';
     let profilePicture = null;
-    const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
     try {
         const [rows] = await db.promise().execute('SELECT display_name, profile_picture FROM users WHERE username = ?', [username]);
         if (rows.length > 0) {
