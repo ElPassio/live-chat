@@ -6,6 +6,7 @@ import { createServer } from 'node:http';
 import mysql from 'mysql2';
 import bcrypt from 'bcrypt';
 import multer from 'multer';
+import cors from 'cors';
 
 const port = process.env.PORT ?? 3000;
 const upload = multer({ dest: 'uploads/' });
@@ -28,6 +29,7 @@ const db = mysql.createConnection({
         rejectUnauthorized: false
     }
 });
+app.use(cors({ origin: '*' }));
 app.use(express.json()); // for parsing application/json
 app.use('/uploads', express.static('uploads'));
 app.use(express.urlencoded({ extended: true })); 

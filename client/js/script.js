@@ -145,7 +145,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    const response = await fetch('/login', {
+    const response = await fetch('https://live-chat-79xj.onrender.com/login/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
