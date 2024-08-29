@@ -1,7 +1,7 @@
 import { io } from 'https://cdn.socket.io/4.3.2/socket.io.esm.min.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    showChat(); // Mostrar la pantalla de login al cargar
+    showLogin(); // Mostrar la pantalla de login al cargar
 });
 function getRandomColor() {
     return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
