@@ -11,13 +11,31 @@ function showLogin() {
     document.getElementById('login-container').style.display = 'block';
     document.getElementById('register-container').style.display = 'none';
     document.getElementById('chat-container').style.display = 'none';
+    
+
 }
 
 // Función para mostrar el formulario de registro
 function showRegister() {
+    
     document.getElementById('login-container').style.display = 'none';
     document.getElementById('register-container').style.display = 'block';
     document.getElementById('chat-container').style.display = 'none';
+    const fileInput = document.getElementById("profilePicture");
+const customButton = document.getElementById("custom-button");
+const customText = document.getElementById("custom-text");
+
+customButton.addEventListener("click", () => {
+    fileInput.click();
+});
+
+fileInput.addEventListener("change", () => {
+    if (fileInput.files.length > 0) {
+        customText.textContent = fileInput.files[0].name;
+    } else {
+        customText.textContent = "Ninguna imagen seleccionada";
+    }
+});
 }
 
 // Función para mostrar el chat

@@ -13,25 +13,55 @@ body {
     background: linear-gradient(to bottom, #2b3f80 , #141d3b);
     background-attachment: fixed;
 }
+#register-container {
+    display: grid;
+    place-content: center;
+    height: 100vh;
+}
 
 #login-container {
     display: grid;
     place-content: center;
     height: 100vh;
 }
+#registerForm {
+    display: grid;
+    place-content: center;
+    height: 100vh;
+}
 
-#login-form {
+#loginForm {
     display: flex;
     flex-direction: column;
 }
 
-#username-input {
+#username {
     margin-bottom: 10px;
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ccc;
 }
-
+#password {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+#loginForm button{
+    height: 30px;
+}
+#registerForm button{
+    height: 30px;
+}
+#registerForm input{
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+#custom-button{
+    margin-bottom:30px;
+}
 #chat-container {
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -117,7 +147,7 @@ body {
     padding: 0 8px;
 }
 
-#form button {
+form button {
     background: #09f;
     color: #fff;
     border: 0;
@@ -126,7 +156,7 @@ body {
     transition: background 500ms;
 }
 
-#form button:hover {
+form button:hover {
     background: #0cf;
 }
 
