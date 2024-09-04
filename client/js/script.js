@@ -84,7 +84,7 @@ function showChat() {
 
         const item = document.createElement('li');
         const img = document.createElement('img');
-        img.src = user.profilePicture ? `/uploads/${user.profilePicture}` : '/uploads/default.jpeg';
+        img.src = user.profilePicture ? `/uploads/${user.profilePicture}` : '/uploads/default.jpg';
         img.alt = user.displayName;
         img.style.width = '30px';
         img.style.height = '30px';
