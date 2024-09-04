@@ -67,6 +67,8 @@
         background-color: #303;
         overflow-y: auto;
         border: 1px solid #ccc;
+        overflow: hidden;
+        -webkit-overflow-scrolling: touch; /* Mejora la experiencia de scroll en iOS */
     }
 
     #users-container h3 {
