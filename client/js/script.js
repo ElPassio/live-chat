@@ -3,6 +3,7 @@ import { io } from 'https://cdn.socket.io/4.3.2/socket.io.esm.min.js';
 document.addEventListener('DOMContentLoaded', () => {
     showLogin(); // Mostrar la pantalla de login al cargar
 });
+
 function getRandomColor() {
     return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
@@ -42,10 +43,28 @@ function showChat() {
     const form = document.getElementById('form');
     const input = document.getElementById('input');
     const messages = document.getElementById('messages');
+    
+    // Reproduce el sonido de un mensaje enviado
+function playMessageSound() {
+    const messageSound = document.getElementById('message-sound');
+    messageSound.play().catch(error => console.error('Error al reproducir el sonido de mensaje:', error));
+}
+
+// Reproduce el sonido al conectar
+function playConnectSound() {
+    const connectSound = document.getElementById('connect-sound');
+    connectSound.play().catch(error => console.error('Error al reproducir el sonido de conexión:', error));
+}
+
+// Reproduce el sonido al desconectar
+function playDisconnectSound() {
+    const disconnectSound = document.getElementById('disconnect-sound');
+    disconnectSound.play().catch(error => console.error('Error al reproducir el sonido de desconexión:', error));
+}
     document.getElementById('login-container').style.display = 'none';
     document.getElementById('register-container').style.display = 'none';
     document.getElementById('chat-container').style.display = 'flex';
-
+    
     const socket = io({
         auth: {
             username: localStorage.getItem('username'),
@@ -59,15 +78,14 @@ function showChat() {
     const currentUsers = Array.from(userList.children);
     const currentUsernames = currentUsers.map(li => li.textContent.trim());
     const newUsernames = users.map(user => user.displayName);
-
     // Identificar los usuarios que se desconectaron
     const disconnectedUsers = currentUsernames.filter(username => !newUsernames.includes(username));
-
     // Animar la salida de los usuarios desconectados
     disconnectedUsers.forEach(username => {
         const userItem = currentUsers.find(li => li.textContent.trim() === username);
         if (userItem) {
             userItem.classList.add('disconnected');
+            playDisconnectSound();
             void userItem.offsetWidth; // Forzar reflow
             userItem.classList.add('hide');
             setTimeout(() => {
@@ -98,11 +116,12 @@ function showChat() {
 
         // Si es un nuevo usuario, aplicamos la animación de conexión
         if (!currentUsernames.includes(user.displayName)) {
+            playConnectSound();
             item.classList.add('connected');
             void item.offsetWidth; // Forzar reflow
             item.classList.add('show');
         }
-
+        
         userList.appendChild(item);
     });
 });
@@ -143,6 +162,11 @@ function showChat() {
     
         // Asegurar que el mensaje sea visible
         item.scrollIntoView();
+        document.getElementById('form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            // Lógica para enviar el mensaje
+            playMessageSound();
+        });
     });
 
     form.addEventListener('submit', (e) => {
@@ -152,6 +176,7 @@ function showChat() {
             input.value = '';
         }
     });
+    
 }
 
 // Manejo del formulario de login
