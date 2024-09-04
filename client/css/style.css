@@ -57,7 +57,8 @@ body {
     display: flex;
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.5);
-    overflow-y: hidden;
+    overflow-y: auto; /* Asegura que el scroll funcione */
+    -webkit-overflow-scrolling: touch; /* Mejora la experiencia de scroll en iOS */
 }
 
 #users-container {
@@ -99,10 +100,11 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow-y: auto;
+    overflow-y: auto; /* Cambia a auto para permitir el desplazamiento */
     flex-grow: 1;
     scroll-behavior: smooth;
     padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch; /* Activa el scroll suave en móviles */
 }
 
 #messages li {
@@ -176,18 +178,19 @@ form button:hover {
     animation: flipInX;
     animation-duration: 1s;
 }
+
 /* Pantallas móviles pequeñas (320px - 480px) */
 @media (max-width: 480px) {
+
     #chat-container {
         flex-direction: column;
-        height: 90vh; /* Ajusta la altura para dejar más espacio */
+        height: 95vh;
         width: 95vw;
         padding: 10px;
-        margin-top: 20px; /* Solo margen superior */
+        overflow: hidden; /* Mantén el contenedor principal sin scroll */
     }
-
     #chat-content {
-        height: 55vh; /* Ajusta la altura para mejorar la visibilidad */
+        height: 60vh;
         order: 2;
     }
 
@@ -215,11 +218,11 @@ form button:hover {
         flex-direction: column;
         width: 95vw;
         height: auto;
-        margin-top: 20px; /* Solo margen superior */
+        overflow: hidden; /* Mantén el contenedor principal sin scroll */
     }
 
     #chat-content {
-        height: 55vh; /* Ajusta la altura para mejorar la visibilidad */
+        height: 60vh;
         order: 2;
     }
 
@@ -245,6 +248,7 @@ form button:hover {
         padding: 8px;
     }
 }
+
 /* Tablets (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
     #chat-container {
