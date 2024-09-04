@@ -164,7 +164,6 @@ function playDisconnectSound() {
         item.scrollIntoView();
         document.getElementById('form').addEventListener('submit', function (event) {
             event.preventDefault();
-            // Lógica para enviar el mensaje
             playMessageSound();
         });
     });
@@ -206,7 +205,6 @@ document.getElementById('registerButton').addEventListener('click', (e) => {
     showRegister(); // Mostrar el formulario de registro
 });
 
-// Manejo del formulario de registro
 // Manejo del formulario de registro
 document.getElementById('registerForm').addEventListener('submit', async (e) => {
     e.preventDefault();
