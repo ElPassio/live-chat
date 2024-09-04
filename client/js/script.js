@@ -11,8 +11,6 @@ function showLogin() {
     document.getElementById('login-container').style.display = 'block';
     document.getElementById('register-container').style.display = 'none';
     document.getElementById('chat-container').style.display = 'none';
-    
-
 }
 
 // Función para mostrar el formulario de registro

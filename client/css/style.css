@@ -7,68 +7,49 @@ body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     display: grid;
     place-content: center;
-    height: 90vh;
-    padding: 36px;
+    height: 100vh;
+    overflow: hidden;
+    padding: 0;
     grid-template-rows: 1fr;
-    background: linear-gradient(to bottom, #2b3f80 , #141d3b);
+    background: linear-gradient(to bottom, #2b3f80, #141d3b);
     background-attachment: fixed;
 }
-#register-container {
+
+#register-container, #login-container, #registerForm {
     display: grid;
     place-content: center;
     height: 100vh;
 }
 
-#login-container {
-    display: grid;
-    place-content: center;
-    height: 100vh;
-}
-#registerForm {
-    display: grid;
-    place-content: center;
-    height: 100vh;
-}
-
-#loginForm {
+#loginForm, #registerForm {
     display: flex;
     flex-direction: column;
 }
 
-#username {
+#username, #password, #registerForm input {
     margin-bottom: 10px;
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ccc;
 }
-#password {
-    margin-bottom: 10px;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-#loginForm button{
+
+#loginForm button, #registerForm button {
     height: 30px;
 }
-#registerForm button{
-    height: 30px;
+
+#custom-button {
+    margin-bottom: 30px;
 }
-#registerForm input{
-    margin-bottom: 10px;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-#custom-button{
-    margin-bottom:30px;
-}
+
 #chat-container {
     border: 1px solid #ccc;
     border-radius: 4px;
     overflow: hidden;
-    width: 800px; /* Ajusta el ancho según sea necesario */
-    height: 90vh;
+    width: 750px;
+    max-width: 95vw; /* Permite que el contenedor se ajuste a pantallas más pequeñas */
+    margin: 2vw;
     display: flex;
+    flex-direction: row;
 }
 
 #chat-content {
@@ -76,13 +57,15 @@ body {
     display: flex;
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: hidden;
 }
 
 #users-container {
     flex: 1;
-    border-left: 1px solid #ddd;
     padding: 10px;
-    background-color: #303; /* Color de fondo claro para la lista de usuarios */
+    background-color: #303;
+    overflow-y: auto;
+    border: 1px solid #ccc;
 }
 
 #users-container h3 {
@@ -102,8 +85,7 @@ body {
     padding: 5px;
     border-bottom: 1px solid #ddd;
     display: flex;
-    align-items: center; /* Alinea verticalmente la imagen y el texto */
-    
+    align-items: center;
 }
 
 #users-list img {
@@ -113,23 +95,18 @@ body {
     margin-right: 8px;
 }
 
-
-#users-list li:last-child {
-    border-bottom: none;
-}
-
 #messages {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow-y: auto;
-    height: calc(100% - 50px); /* Ajusta según el tamaño del formulario */
+    flex-grow: 1;
     scroll-behavior: smooth;
     padding-bottom: 4px;
 }
 
 #messages li {
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
 }
 
 #form {
@@ -162,25 +139,22 @@ form button:hover {
 
 .message-item {
     display: flex;
-    align-items: center; /* Alinea verticalmente la imagen y el texto */
+    align-items: center;
     padding: 0.5rem;
     margin-bottom: 0.5rem;
     border-radius: 10%;
-    
 }
 
 .message-item img.profile-picture {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin-right: 8px; /* Espacio entre la imagen y el texto */
+    margin-right: 8px;
 }
 
 .message-item .message-text {
-    
     display: flex;
     flex-direction: column;
-    
 }
 
 .message-item .message-text .display-name {
@@ -190,14 +164,143 @@ form button:hover {
 
 .message-item .message-text .message-content {
     color: #F3F4FC;
-    background-color: #273274 ;
+    background-color: #273274;
     border-radius: 10px;
-    padding:10px;
+    padding: 10px;
     margin-top: 0.25rem;
-    animation: slideInLeft, fadeIn; /* referring directly to the animation's @keyframe declaration */
-    animation-duration: 0.5s, 1s; /* don't forget to set a duration! */
+    animation: slideInLeft, fadeIn;
+    animation-duration: 0.5s, 1s;
 }
+
 .connected {
-    animation: flipInX; /* referring directly to the animation's @keyframe declaration */
-    animation-duration: 1s; /* don't forget to set a duration! */
+    animation: flipInX;
+    animation-duration: 1s;
+}
+
+/* Pantallas móviles pequeñas (320px - 480px) */
+@media (max-width: 480px) {
+    #chat-container {
+        flex-direction: column;
+        height: 95vh;
+        width: 95vw;
+        padding: 10px;
+    }
+
+    #chat-content {
+        height: 60vh;
+        order: 2;
+    }
+
+    #users-container {
+        order: 1;
+        width: 95vw - 10px;
+        border-top: 1px solid #ccc;
+        padding: 5px;
+        overflow-x: hidden;
+    }
+
+    /* Ajustes para #form y #form button en pantallas pequeñas */
+    #form {
+        height: 60px; /* Aumenta ligeramente la altura */
+    }
+
+    #form button {
+        font-size: 16px; /* Incrementa el tamaño de fuente */
+        padding: 10px; /* Añade un poco más de padding */
+    }
+}
+
+/* Pantallas móviles medianas (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+    #chat-container {
+        flex-direction: column;
+        width: 95vw;
+        height: auto;
+    }
+
+    #chat-content {
+        height: 60vh;
+        order: 2;
+    }
+
+    #users-container {
+        order: 1;
+        width: 100%;
+        border: 1px solid #ccc;
+        padding: 5px;
+        overflow-x: hidden;
+    }
+
+    #messages {
+        height: calc(100vh - 120px);
+    }
+
+    /* Ajustes para #form y #form button en pantallas medianas */
+    #form {
+        height: 55px; /* Un ajuste leve para pantallas medianas */
+    }
+
+    #form button {
+        font-size: 15px;
+        padding: 8px;
+    }
+}
+
+/* Tablets (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    #chat-container {
+        width: 90vw;
+        height: 80vh;
+    }
+
+    #chat-content {
+        height: auto;
+    }
+
+    #users-container {
+        height: auto;
+    }
+    /* Ajustes para #form y #form button en pantallas medianas */
+    #form {
+        height: 55px; /* Un ajuste leve para pantallas medianas */
+    }
+
+    #form button {
+        font-size: 15px;
+        padding: 8px;
+    }
+}
+
+/* Laptops y pantallas de escritorio pequeñas (1025px - 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    #chat-container {
+        width: 750px;
+        height: 85vh;
+    }
+    #form {
+        height: 55px; /* Un ajuste leve para pantallas medianas */
+    }
+
+    #form button {
+        font-size: 15px;
+        padding: 8px;
+    }
+}
+
+/* Pantallas de escritorio grandes (1441px en adelante) */
+@media (min-width: 1441px) {
+    #chat-container {
+        width: 750px;
+        height: 90vh;
+    }
+
+    /* Ajustes para #form y #form button en pantallas medianas */
+    #form {
+        height: 55px; /* Un ajuste leve para pantallas medianas */
+    }
+
+    #form button {
+        font-size: 15px;
+        padding: 8px;
+    }
 }
