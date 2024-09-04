@@ -1,309 +1,310 @@
-:root {
-    color-scheme: light dark;
-}
+    :root {
+        color-scheme: light dark;
+    }
 
-body {
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    display: grid;
-    place-content: center;
-    height: 100vh;
-    overflow: hidden;
-    padding: 0;
-    grid-template-rows: 1fr;
-    background: linear-gradient(to bottom, #2b3f80, #141d3b);
-    background-attachment: fixed;
-}
+    body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        display: grid;
+        place-content: center;
+        height: 100vh;
+        overflow: hidden;
+        padding: 0;
+        grid-template-rows: 1fr;
+        background: linear-gradient(to bottom, #2b3f80, #141d3b);
+        background-attachment: fixed;
+    }
 
-#register-container, #login-container, #registerForm {
-    display: grid;
-    place-content: center;
-    height: 100vh;
-}
+    #register-container, #login-container, #registerForm {
+        display: grid;
+        place-content: center;
+        height: 100vh;
+    }
 
-#loginForm, #registerForm {
-    display: flex;
-    flex-direction: column;
-}
-
-#username, #password, #registerForm input {
-    margin-bottom: 10px;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-
-#loginForm button, #registerForm button {
-    height: 30px;
-}
-
-#custom-button {
-    margin-bottom: 30px;
-}
-
-#chat-container {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    overflow: hidden;
-    width: 750px;
-    max-width: 95vw; /* Permite que el contenedor se ajuste a pantallas más pequeñas */
-    margin: 2vw;
-    display: flex;
-    flex-direction: row;
-}
-
-#chat-content {
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.5);
-    overflow-y: auto; /* Asegura que el scroll funcione */
-    -webkit-overflow-scrolling: touch; /* Mejora la experiencia de scroll en iOS */
-}
-
-#users-container {
-    flex: 1;
-    padding: 10px;
-    background-color: #303;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-}
-
-#users-container h3 {
-    margin-top: 0;
-    font-size: 1.2em;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 5px;
-}
-
-#users-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-#users-list li {
-    padding: 5px;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-}
-
-#users-list img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-
-#messages {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow-y: auto; /* Cambia a auto para permitir el desplazamiento */
-    flex-grow: 1;
-    scroll-behavior: smooth;
-    padding-bottom: 4px;
-    -webkit-overflow-scrolling: touch; /* Activa el scroll suave en móviles */
-}
-
-#messages li {
-    padding: 0.5rem 1rem;
-}
-
-#form {
-    display: flex;
-    height: 50px;
-    padding: 4px;
-    position: relative;
-}
-
-#input {
-    border-radius: 9999px;
-    border: 1px solid #ccc;
-    flex: 1;
-    margin: 4px;
-    padding: 0 8px;
-}
-
-form button {
-    background: #09f;
-    color: #fff;
-    border: 0;
-    margin: 4px;
-    border-radius: 4px;
-    transition: background 500ms;
-}
-
-form button:hover {
-    background: #0cf;
-}
-
-.message-item {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    border-radius: 10%;
-}
-
-.message-item img.profile-picture {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-
-.message-item .message-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.message-item .message-text .display-name {
-    font-weight: bold;
-    color: #d7d8e0;
-}
-
-.message-item .message-text .message-content {
-    color: #F3F4FC;
-    background-color: #273274;
-    border-radius: 10px;
-    padding: 10px;
-    margin-top: 0.25rem;
-    animation: slideInLeft, fadeIn;
-    animation-duration: 0.5s, 1s;
-}
-
-.connected {
-    animation: flipInX;
-    animation-duration: 1s;
-}
-
-/* Pantallas móviles pequeñas (320px - 480px) */
-@media (max-width: 480px) {
-
-    #chat-container {
+    #loginForm, #registerForm {
+        display: flex;
         flex-direction: column;
-        height: 95vh;
-        width: 95vw;
-        padding: 10px;
-        overflow: hidden; /* Mantén el contenedor principal sin scroll */
-    }
-    #chat-content {
-        height: 60vh;
-        order: 2;
     }
 
-    #users-container {
-        order: 1;
-        border-top: 1px solid #ccc;
-        padding: 5px;
-        overflow-x: hidden;
-    }
-
-    /* Ajustes para #form y #form button en pantallas pequeñas */
-    #form {
-        height: 60px; /* Aumenta ligeramente la altura */
-    }
-
-    #form button {
-        font-size: 16px; /* Incrementa el tamaño de fuente */
-        padding: 10px; /* Añade un poco más de padding */
-    }
-}
-
-/* Pantallas móviles medianas (481px - 767px) */
-@media (min-width: 481px) and (max-width: 767px) {
-    #chat-container {
-        flex-direction: column;
-        width: 95vw;
-        height: auto;
-        overflow: hidden; /* Mantén el contenedor principal sin scroll */
-    }
-
-    #chat-content {
-        height: 60vh;
-        order: 2;
-    }
-
-    #users-container {
-        order: 1;
-        width: 100%;
+    #username, #password, #registerForm input {
+        margin-bottom: 10px;
+        padding: 8px;
+        border-radius: 4px;
         border: 1px solid #ccc;
+    }
+
+    #loginForm button, #registerForm button {
+        height: 30px;
+    }
+
+    #custom-button {
+        margin-bottom: 30px;
+    }
+
+    #chat-container {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        overflow: hidden;
+        width: 750px;
+        max-width: 95vw; /* Permite que el contenedor se ajuste a pantallas más pequeñas */
+        margin: 2vw;
+        display: flex;
+        flex-direction: row;
+    }
+
+    #chat-content {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.5);
+        overflow-y: auto; /* Asegura que el scroll funcione */
+        -webkit-overflow-scrolling: touch; /* Mejora la experiencia de scroll en iOS */
+    }
+
+    #users-container {
+        flex: 1;
+        padding: 10px;
+        background-color: #303;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+    }
+
+    #users-container h3 {
+        margin-top: 0;
+        font-size: 1.2em;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+    }
+
+    #users-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #users-list li {
         padding: 5px;
-        overflow-x: hidden;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+    }
+
+    #users-list img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 8px;
     }
 
     #messages {
-        height: calc(100vh - 120px);
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow-y: auto; /* Cambia a auto para permitir el desplazamiento */
+        flex-grow: 1;
+        scroll-behavior: smooth;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch; /* Activa el scroll suave en móviles */
     }
 
-    /* Ajustes para #form y #form button en pantallas medianas */
+    #messages li {
+        padding: 0.5rem 1rem;
+    }
+
     #form {
-        height: 55px; /* Un ajuste leve para pantallas medianas */
+        display: flex;
+        height: 50px;
+        padding: 4px;
+        position: relative;
+        flex-shrink: 0; /* Evita que el formulario se contraiga con el contenido */
     }
 
-    #form button {
-        font-size: 15px;
-        padding: 8px;
-    }
-}
-
-/* Tablets (768px - 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-    #chat-container {
-        width: 90vw;
-        height: 80vh;
+    #input {
+        border-radius: 9999px;
+        border: 1px solid #ccc;
+        flex: 1;
+        margin: 4px;
+        padding: 0 8px;
     }
 
-    #chat-content {
-        height: auto;
+    form button {
+        background: #09f;
+        color: #fff;
+        border: 0;
+        margin: 4px;
+        border-radius: 4px;
+        transition: background 500ms;
     }
 
-    #users-container {
-        height: auto;
-    }
-    /* Ajustes para #form y #form button en pantallas medianas */
-    #form {
-        height: 55px; /* Un ajuste leve para pantallas medianas */
+    form button:hover {
+        background: #0cf;
     }
 
-    #form button {
-        font-size: 15px;
-        padding: 8px;
-    }
-}
-
-/* Laptops y pantallas de escritorio pequeñas (1025px - 1440px) */
-@media (min-width: 1025px) and (max-width: 1440px) {
-    #chat-container {
-        width: 750px;
-        height: 85vh;
-    }
-    #form {
-        height: 55px; /* Un ajuste leve para pantallas medianas */
+    .message-item {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+        border-radius: 10%;
     }
 
-    #form button {
-        font-size: 15px;
-        padding: 8px;
-    }
-}
-
-/* Pantallas de escritorio grandes (1441px en adelante) */
-@media (min-width: 1441px) {
-    #chat-container {
-        width: 750px;
-        height: 90vh;
+    .message-item img.profile-picture {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 8px;
     }
 
-    /* Ajustes para #form y #form button en pantallas medianas */
-    #form {
-        height: 55px; /* Un ajuste leve para pantallas medianas */
+    .message-item .message-text {
+        display: flex;
+        flex-direction: column;
     }
 
-    #form button {
-        font-size: 15px;
-        padding: 8px;
+    .message-item .message-text .display-name {
+        font-weight: bold;
+        color: #d7d8e0;
     }
-}
+
+    .message-item .message-text .message-content {
+        color: #F3F4FC;
+        background-color: #273274;
+        border-radius: 10px;
+        padding: 10px;
+        margin-top: 0.25rem;
+        animation: slideInLeft, fadeIn;
+        animation-duration: 0.5s, 1s;
+    }
+
+    .connected {
+        animation: flipInX;
+        animation-duration: 1s;
+    }
+
+    /* Pantallas móviles pequeñas (320px - 480px) */
+    @media (max-width: 480px) {
+
+        #chat-container {
+            flex-direction: column;
+            height: 95vh;
+            width: 95vw;
+            padding: 10px;
+            overflow: hidden; /* Mantén el contenedor principal sin scroll */
+        }
+        #chat-content {
+            height: 60vh;
+            order: 2;
+        }
+
+        #users-container {
+            order: 1;
+            border-top: 1px solid #ccc;
+            padding: 5px;
+            overflow-x: hidden;
+        }
+
+        /* Ajustes para #form y #form button en pantallas pequeñas */
+        #form {
+            height: 60px; /* Aumenta ligeramente la altura */
+        }
+
+        #form button {
+            font-size: 16px; /* Incrementa el tamaño de fuente */
+            padding: 10px; /* Añade un poco más de padding */
+        }
+    }
+
+    /* Pantallas móviles medianas (481px - 767px) */
+    @media (min-width: 481px) and (max-width: 767px) {
+        #chat-container {
+            flex-direction: column;
+            width: 95vw;
+            height: auto;
+            overflow: hidden; /* Mantén el contenedor principal sin scroll */
+        }
+
+        #chat-content {
+            height: 60vh;
+            order: 2;
+        }
+
+        #users-container {
+            order: 1;
+            width: 100%;
+            border: 1px solid #ccc;
+            padding: 5px;
+            overflow-x: hidden;
+        }
+
+        #messages {
+            height: calc(100vh - 120px);
+        }
+
+        /* Ajustes para #form y #form button en pantallas medianas */
+        #form {
+            height: 55px; /* Un ajuste leve para pantallas medianas */
+        }
+
+        #form button {
+            font-size: 15px;
+            padding: 8px;
+        }
+    }
+
+    /* Tablets (768px - 1024px) */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        #chat-container {
+            width: 90vw;
+            height: 80vh;
+        }
+
+        #chat-content {
+            height: auto;
+        }
+
+        #users-container {
+            height: auto;
+        }
+        /* Ajustes para #form y #form button en pantallas medianas */
+        #form {
+            height: 55px; /* Un ajuste leve para pantallas medianas */
+        }
+
+        #form button {
+            font-size: 15px;
+            padding: 8px;
+        }
+    }
+
+    /* Laptops y pantallas de escritorio pequeñas (1025px - 1440px) */
+    @media (min-width: 1025px) and (max-width: 1440px) {
+        #chat-container {
+            width: 750px;
+            height: 85vh;
+        }
+        #form {
+            height: 55px; /* Un ajuste leve para pantallas medianas */
+        }
+
+        #form button {
+            font-size: 15px;
+            padding: 8px;
+        }
+    }
+
+    /* Pantallas de escritorio grandes (1441px en adelante) */
+    @media (min-width: 1441px) {
+        #chat-container {
+            width: 750px;
+            height: 90vh;
+        }
+
+        /* Ajustes para #form y #form button en pantallas medianas */
+        #form {
+            height: 55px; /* Un ajuste leve para pantallas medianas */
+        }
+
+        #form button {
+            font-size: 15px;
+            padding: 8px;
+        }
+    }
