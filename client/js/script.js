@@ -213,7 +213,15 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     formData.append('username', document.getElementById('registerUsername').value.trim());
     formData.append('password', document.getElementById('registerPassword').value.trim());
     formData.append('displayName', document.getElementById('displayName').value.trim());
-    formData.append('profilePicture', document.getElementById('profilePicture').files[0]);
+    
+    // Asegurarte de que hay una imagen seleccionada antes de enviar el formulario
+    const profilePicture = document.getElementById('profilePicture').files[0];
+    if (profilePicture) {
+        formData.append('profilePicture', profilePicture);
+    } else {
+        alert('Por favor, selecciona una imagen de perfil.');
+        return;  // No enviar el formulario si no hay imagen seleccionada
+    }
 
     try {
         const response = await fetch('/register', {
@@ -232,6 +240,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
         alert('An error occurred during registration. Please try again.');
     }
 });
+
 
 // Manejo del botón de regreso al login
 document.getElementById('backToLogin').addEventListener('click', (e) => {
