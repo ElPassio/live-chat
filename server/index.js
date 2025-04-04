@@ -60,7 +60,8 @@ await db.promise().execute(
         id INTEGER PRIMARY KEY AUTO_INCREMENT,
         username VARCHAR(255) NOT NULL UNIQUE,
         password VARCHAR(255) NOT NULL,
-        display_name VARCHAR(255) NOT NULL
+        display_name VARCHAR(255) NOT NULL,
+        profile_picture VARCHAR(255)
     )
 `);
 io.on('connection', async (socket) => {
