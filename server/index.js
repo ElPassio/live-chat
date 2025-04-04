@@ -17,7 +17,7 @@ const io = new Server(server, {
 });
 
 // Parse the MySQL URL
-const dbUrl = new URL('mysql://root:lJhbUbJMsqWrdyqnEvPRPWubBaFvfGtY@junction.proxy.rlwy.net:48119/railway');
+const dbUrl = new URL('mysql://root:sql.freedb.tech:3306/freedb_database_1');
 const connectedUsers = new Map();
 const db = mysql.createConnection({
     host: dbUrl.hostname,
