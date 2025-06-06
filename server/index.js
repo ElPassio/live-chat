@@ -17,7 +17,7 @@ const io = new Server(server, {
 });
 
 // Parse the MySQL URL
-const dbUrl = new URL('mysql://root:eDAcOmhTEFnRynlZJJfglgezmQwljVhU@trolley.proxy.rlwy.net:45487/railway');
+const dbUrl = new URL('mysql://root:tBRBCQgKyxTCuxETHxfkEiUhSiGXOBmq@interchange.proxy.rlwy.net:13482/railway');
 const connectedUsers = new Map();
 const db = mysql.createConnection({
     host: dbUrl.hostname,
